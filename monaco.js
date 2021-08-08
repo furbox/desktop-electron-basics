@@ -1,4 +1,5 @@
-const loader = require('monaco-loader')
+const loader = require('monaco-loader');
+const { ipcRenderer } = require('electron');
  
 loader().then((monaco) => {
   let editor = monaco.editor.create(document.getElementById('container'), {
@@ -6,4 +7,9 @@ loader().then((monaco) => {
     theme: 'vs-dark',
     automaticLayout: true
   })
+})
+
+ipcRenderer.on('showAlert', (ev, data) => {
+    console.log(data)
+    alert(data);
 })
